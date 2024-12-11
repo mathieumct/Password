@@ -5,11 +5,10 @@ import string
 import secrets
 from cryptography.fernet import Fernet
 
-# Génération de la clé de chiffrement pour la sauvegarde sécurisée
 key = Fernet.generate_key()
 cipher = Fernet(key)
 
-# === Fonction de génération de mot de passe ===
+# === Génération du mot de passe ===
 def generate_password():
     try:
         length = int(password_length_var.get())
@@ -36,7 +35,7 @@ def generate_password():
     except ValueError as e:
         messagebox.showerror("Erreur", str(e))
 
-# === Fonction d'évaluation de la robustesse ===
+# === Evaluation de la robustesse du mot de passe ===
 def evaluate_password():
     password = password_input.get()
     if not password:
@@ -73,7 +72,7 @@ def evaluate_password():
     details_text = "\n".join(details) if details else " Bon équilibre."
     result_var.set(f"Robustesse : {strength}\n{details_text}")
 
-# === Fonction pour copier le mot de passe dans le presse-papier ===
+# === Copier le mot de passe dans le presse-papier ===
 def copy_to_clipboard():
     password = result_var.get()
     if not password:
@@ -84,7 +83,7 @@ def copy_to_clipboard():
     root.update()
     messagebox.showinfo("Succès", "Mot de passe copié dans le presse-papier !")
 
-# === Fonction pour enregistrer le mot de passe dans un fichier sécurisé ===
+# === Enregistrer le mot de passe dans un fichier sécurisé ===
 def save_password():
     password = result_var.get()
     if not password:
